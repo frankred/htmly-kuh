@@ -47,31 +47,47 @@
                             <?php echo menu('nav-menu') ?>
                         </div>
                     </nav>
+                    <?php if (blog_description()) { ?>
                     <aside class="widget widget_meta">
                         <h2 class="widget-title">About</h2>
                         <p><?php echo blog_description() ?></p>
                     </aside>                    
+                    <?php } ?>
+
+                    <?php if (config('social.facebook') || config('social.twitter') || config('social.google')) { ?>
                     <nav id="social-navigation" class="social-navigation" role="navigation">
                         <div class="menu-social-links-container">
                             <ul id="menu-social-links" class="menu">
+
+                                <?php if (config('social.twitter')){ ?>
                                 <li class="menu-item">
                                     <a href="<?php echo config('social.twitter');?>">
                                     <span class="screen-reader-text">Twitter</span>
                                     </a>
                                 </li>
+                                <?php } ?>
+
+                                <?php if (config('social.facebook')){ ?>
                                 <li class="menu-item">
                                     <a href="<?php echo config('social.facebook');?>">
                                     <span class="screen-reader-text">Facebook</span>
                                     </a>
                                 </li>
+                                <?php } ?>
+
+                                <?php if (config('social.google')){ ?>
                                 <li class="menu-item">
                                     <a href="<?php echo config('social.google');?>">
                                     <span class="screen-reader-text">Google</span>
                                     </a>
                                 </li>
+                                <?php } ?>
                             </ul>
                         </div>
                     </nav>
+                    <?php } ?>
+
+                    <?php if(config('blog.enable') !== "false") { ?>
                     <aside class="widget search">
                         <form><input type="search" name="search" class="form-control" placeholder="Type to search"></form>
                     </aside>                            
@@ -109,6 +125,7 @@
                             <?php endforeach;?>
                             </ul>
                     </aside>
+                    <?php } ?>
                 </div>
             </div>
         </div>                
@@ -119,11 +136,13 @@
                 </main>
             </div>
         </div>
+        <?php if (config('views.footer.enable') !== "false") { ?>
         <footer id="colophon" class="site-footer" role="contentinfo">
             <div class="site-info">
                  <?php echo copyright();?>
             </div>
         </footer>
+        <?php } ?>
     </div>
     <script type="text/javascript">
     /* <![CDATA[ */
